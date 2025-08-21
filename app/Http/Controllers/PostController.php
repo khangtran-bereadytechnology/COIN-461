@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -35,7 +36,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->title,
             'content' => $request->content,
-            'user_id' => 1 //hardcode user id, thay thế cho auth, làm ở task sau
+            'user_id' => Auth::user()->id,
         ]);
         return Redirect()->route('posts.index');
     }
